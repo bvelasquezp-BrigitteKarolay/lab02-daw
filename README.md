@@ -20,7 +20,7 @@ El formulario permite:
 ## Estructura del proyecto
 
 ```bash
-EJERCICIO02/
+ejercicio01/
 ├── Dockerfile
 └── lab02/
     ├── ejercicio01.html
