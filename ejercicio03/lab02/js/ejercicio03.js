@@ -124,12 +124,12 @@ function generarLetras() {
 
             if (!progreso.includes("_")) {
                 mensaje.className = "mensaje ganar";
-                mensaje.innerHTML = "🎉 ¡Ganaste! <br> La palabra era: " + palabra;
+                mensaje.innerHTML = "¡Ganaste! <br> La palabra era: " + palabra;
             }
 
             if (errores === 10) {
                 mensaje.className = "mensaje perder";
-                mensaje.innerHTML = "😢 Perdiste <br> Era: " + palabra;
+                mensaje.innerHTML = "Perdiste <br> Era: " + palabra;
             }
         };
 
