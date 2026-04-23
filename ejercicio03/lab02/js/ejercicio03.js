@@ -60,7 +60,7 @@ function iniciarJuego() {
     usadas = [];
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.beginPath(); // 🔥 FIX IMPORTANTE
+    ctx.beginPath(); 
 
     palabraDiv.innerText = progreso.join(" ");
     erroresDiv.innerHTML = "";
