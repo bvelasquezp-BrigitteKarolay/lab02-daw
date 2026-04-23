@@ -1,7 +1,5 @@
 #  Ejercicio 01 – Teclado Interactivo (JavaScript + Docker)
 
-# Ejercicio 01 – Formulario Bancario (JavaScript + DOM + Teclado Virtual)
-
 ## Descripción
 
 En este ejercicio se implementa un formulario bancario interactivo utilizando JavaScript nativo, donde toda la interfaz se genera dinámicamente mediante el DOM.
