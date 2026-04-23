@@ -1,5 +1,105 @@
 #  Ejercicio 01 – Teclado Interactivo (JavaScript + Docker)
 
+## Descripción
+
+En este ejercicio se implementa un formulario bancario interactivo utilizando JavaScript nativo, donde toda la interfaz se genera dinámicamente mediante el DOM.
+
+El formulario permite:
+
+* Seleccionar tipo de tarjeta (Débito/Crédito)
+* Ingresar número de tarjeta
+* Seleccionar tipo de documento (DNI, Carnet de extranjería, RUC, Pasaporte, Cédula diplomática)
+* Ingresar número de documento
+* Generar clave de internet mediante **teclado virtual**
+* Validar captcha
+* Mostrar notificaciones de validación
+
+---
+## Estructura del proyecto
+
+```bash
+ejercicio01/
+├── Dockerfile
+└── lab02/
+    ├── ejercicio01.html
+    └── js/
+        ├── ejercicio01.js
+        └── ejercicio01.min.js
+```
+
+---
+
+## Funcionamiento del formulario
+
+1. Se genera dinámicamente toda la estructura del formulario
+2. El usuario completa los campos:
+   - Selecciona tipo de tarjeta
+   - Ingresa número de tarjeta
+   - Selecciona tipo de documento
+   - Ingresa número de documento
+3. Para la clave de internet:
+   - Se genera un teclado virtual con números del 0-9 en orden aleatorio
+   - El usuario presiona las teclas para ingresar su clave (máximo 6 dígitos)
+   - Botón de limpiar para borrar la clave ingresada
+4. Captcha:
+   - Se muestra un código estático "XAND"
+   - El usuario debe copiarlo en el campo correspondiente
+5. Al presionar "Ingresar":
+   - Se valida el captcha
+   - Se muestra una notificación flotante indicando éxito o error
+
+ ---
+
+## Teclado Virtual
+
+El teclado virtual se genera dinámicamente con las siguientes características:
+
+```javascript
+// Números del 0-9 en orden aleatorio
+let arraydenumeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+for (let a = 0; a < 10; a++) {
+    let indiceRandom = Math.floor(Math.random() * arraydenumeros.length);
+    let tecla = document.createElement("button");
+    tecla.textContent = arraydenumeros[indiceRandom];
+    // ...
+    arraydenumeros.splice(indiceRandom, 1);
+}
+```
+Características:
+
+* Disposición en cuadrícula de 3x3 más una tecla adicional
+* Botón especial de limpiar
+* Máximo 6 dígitos en el campo de clave
+* Campo de solo lectura para evitar entrada manual
+
+## Configuración con Docker (Ubuntu + Apache)
+
+```
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y apache2 && \
+    echo "ServerName localhost" >> /etc/apache2/apache2.conf
+
+COPY lab01 /var/www/html/lab01
+
+EXPOSE 80
+
+CMD ["apachectl", "-D", "FOREGROUND"]
+```
+## Ejecución del proyecto
+1. Construir la imagen
+docker build -t teclado .
+2. Ejecutar el contenedor
+docker run -d -p 8080:80 teclado
+3. Abrir en el navegador
+http://127.0.0.1:8080/lab02/ejercicio01.html
+
+## Versiones del codigo
+* se crearon 2 versiones una ofuscada (ejercicio01.min.js) y otra sin ofuscar (ejercicio01.js)
+
 #  Ejercicio 02 – Calculadora (JavaScript + Docker)
 
 ## Descripción
