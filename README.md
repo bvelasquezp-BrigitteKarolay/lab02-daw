@@ -17,7 +17,7 @@ La calculadora permite:
 
 ---
 
-## 📁 Estructura del proyecto
+##  Estructura del proyecto
 
 ```bash
 EJERCICIO02/
